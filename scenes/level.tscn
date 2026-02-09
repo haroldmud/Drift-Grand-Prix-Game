@@ -1,0 +1,163 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwu7jcihnkrmt"]
+
+[ext_resource type="PackedScene" uid="uid://vw8h1q4uaabo" path="res://player.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://csdctd4q7ytjm" path="res://scripts/level.gd" id="1_klq6b"]
+[ext_resource type="PackedScene" uid="uid://b0x7jqg8ikenr" path="res://scenes/RaceTrack.tscn" id="2_w7c3h"]
+[ext_resource type="Script" uid="uid://tjkn4dg0irg0" path="res://scripts/ui.gd" id="3_mx8sn"]
+[ext_resource type="FontFile" uid="uid://br3vnrm4cqyno" path="res://assets/fonts/subatomic.tsoonami.ttf" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://81gtwyswhbos" path="res://scenes/finish_line.tscn" id="6_2r41h"]
+[ext_resource type="FontFile" uid="uid://f6wys1w34ej1" path="res://assets/fonts/DepartureMono-Regular.otf" id="6_klq6b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
+sky_top_color = Color(0.70697314, 0.75986606, 0.83071184, 1)
+sky_horizon_color = Color(0.998939, 1.0044122, 1.0131238, 1)
+ground_horizon_color = Color(0.998939, 1.0044122, 1.0131238, 1)
+
+[sub_resource type="Sky" id="Sky_2q6dc"]
+sky_material = SubResource("ProceduralSkyMaterial_rd3vj")
+
+[sub_resource type="Environment" id="Environment_w7c3h"]
+background_mode = 2
+sky = SubResource("Sky_2q6dc")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5xgho"]
+size = Vector2(70, 120)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w7c3h"]
+points = PackedVector3Array(-35.95238, -0.952381, -60.952385, 36.42857, 0.952381, 60.952385, 36.42857, -0.952381, 60.952385, 36.42857, 0.952381, -60.952385, -35.95238, 0.952381, 60.952385, -35.95238, -0.952381, 60.952385, 36.42857, -0.952381, -60.952385, -35.95238, 0.952381, -60.952385)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_klq6b")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w7c3h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9218631, 0.009467853, -0.38740006, 0, 0.9997015, 0.024432179, 0.38751572, -0.022523124, 0.9215879, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Track" parent="." instance=ExtResource("2_w7c3h")]
+transform = Transform3D(-8.138005e-07, 0, 18.617586, 0, 18.617586, 0, -18.617586, 0, -8.138005e-07, 42.508827, -1.3893623, -144.30545)
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.6985899, 0, 0, 0, 1, -4.0798635, -0.08445358, -39.593674)
+mesh = SubResource("PlaneMesh_5xgho")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_w7c3h")
+
+[node name="Player" parent="." instance=ExtResource("1_2q6dc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.8422027, -0.10406518, 0.36538696)
+linear_damp = 1.0
+
+[node name="ui" type="CanvasLayer" parent="." groups=["ui"]]
+script = ExtResource("3_mx8sn")
+
+[node name="MarginContainer" type="MarginContainer" parent="ui"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.5
+offset_right = 82.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 10
+
+[node name="TimerLabel" type="Label" parent="ui/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.98672086, 0.7411031, 0.5608509, 1)
+theme_override_fonts/font = ExtResource("3_w8frs")
+theme_override_font_sizes/font_size = 32
+text = "00:00:00"
+
+[node name="StartTimer" type="Timer" parent="ui"]
+wait_time = 3.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="ui"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 300
+
+[node name="TimeStarter" type="Label" parent="ui/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.73898244, 0.5513519, 1.25216475e-05, 1)
+theme_override_fonts/font = ExtResource("3_w8frs")
+theme_override_font_sizes/font_size = 84
+text = "0"
+
+[node name="GoTimer" type="Timer" parent="ui"]
+autostart = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="ui"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.4346475, 0.39700145)
+theme_override_constants/margin_top = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer4" type="MarginContainer" parent="ui"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_bottom = 75.0
+grow_horizontal = 0
+scale = Vector2(0.98023367, 0.96001774)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="Lap" type="Label" parent="ui/MarginContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9098039, 0.40392157, 0.3019608, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_w8frs")
+theme_override_font_sizes/font_size = 24
+text = "Lap: 1/3
+
+"
+
+[node name="MarginContainer5" type="MarginContainer" parent="ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="ui/MarginContainer5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7372549, 0, 0.5686275, 1)
+theme_override_fonts/font = ExtResource("6_klq6b")
+theme_override_font_sizes/font_size = 80
+
+[node name="GameOverTimer" type="Timer" parent="ui"]
+wait_time = 2.0
+
+[node name="FinishLine" parent="." instance=ExtResource("6_2r41h")]
+transform = Transform3D(0.061028715, 0, 0, 0, 0.056818556, 0, 0, 0, -0.054637637, 38.342514, -2.0869713, 8.449606)
+
+[connection signal="timeout" from="ui/StartTimer" to="ui" method="_on_start_timer_timeout"]
+[connection signal="timeout" from="ui/GoTimer" to="ui" method="_on_go_timer_timeout"]
+[connection signal="timeout" from="ui/GameOverTimer" to="ui" method="_on_game_over_timer_timeout"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://vw8h1q4uaabo"]
+
+[ext_resource type="Script" uid="uid://bny32gx1o8oay" path="res://scripts/player.gd" id="1_onrkg"]
+[ext_resource type="ArrayMesh" uid="uid://dsfoqorvn4y13" path="res://assets/F1.obj" id="2_i3pqv"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hqtel"]
+margin = 0.0
+points = PackedVector3Array(-3.2225854, 0.2575061, -1.2436308, -3.213337, 0.7094957, -1.2395838, -3.2795506, 0.5242829, 1.3578753, -2.8032503, 1.2864642, 0.6908198, 2.2456527, 0.61947393, -1.024354, 1.5859472, 0.010982874, 0.89316446, -2.6122527, -0.047385752, -1.3103468, -2.6122527, -0.047385752, 1.2625444, -3.2795506, 1.2864642, -0.6430301, 2.3631735, 0.17119662, -0.9626, 1.7693522, 0.7145344, 1.0718825, -1.4692513, 1.191012, -0.3572984, -2.6122527, 0.9051777, -1.3103468, -3.08915, 0.9051777, 1.3578753, 1.5859472, 0.010982874, -0.9326237, 2.4285378, 0.1603, 0.9422067, -3.1147056, 0.07971789, 1.1933992, 2.6270509, 0.5242829, 0.21416499, -2.8032503, 1.2864642, -0.73836106, 1.7693522, 0.7145344, -1.024354, -1.4692513, 1.191012, 0.30949596, -3.1008992, 0.082390696, -1.2296437, 2.5350344, 0.17242849, -0.15492596, 2.531552, 0.33363962, 0.9765515, -3.2713783, 0.25140712, 1.2204211, -2.8032503, 0.9051777, 1.3578753, 2.6270509, 0.5242829, -0.16663648, 2.2456527, 0.61947393, 0.9765515, -3.0479012, 1.2341523, 0.6384977, 2.3411515, 0.61947393, -0.07130553, -2.8890357, 0.0009190078, -1.2137184, -3.08915, 0.5242829, 1.3578753)
+
+[node name="Player" type="RigidBody3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+top_level = true
+linear_damp = 2.0
+script = ExtResource("1_onrkg")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.43543786, 0, 0, 0, 0.49749324, 0, 0, 0, 0.47254097, 0, 0, 0)
+mesh = ExtResource("2_i3pqv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_hqtel")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(0.043117613, 0.13479903, -0.9899344, -0.0058657564, 0.990873, 0.13467135, 0.9990528, 6.822694e-09, 0.04351477, -2.933506, 1.2732754, 0.008904329)
