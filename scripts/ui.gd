@@ -66,7 +66,6 @@ func set_health(health_amount):
 		text_rect.texture = load("res://assets/icons/lighting.png")
 		$MarginContainer3/HBoxContainer.add_child(text_rect)
 
-
 func _on_win_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/you_win.tscn")
 	$YouWin.text = ""
