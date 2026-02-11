@@ -55,7 +55,7 @@ mesh = SubResource("PlaneMesh_5xgho")
 shape = SubResource("ConvexPolygonShape3D_w7c3h")
 
 [node name="Player" parent="." instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.8422027, -0.10406518, 0.36538696)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.8422027, -0.10406518, 0.94895005)
 linear_damp = 1.0
 
 [node name="ui" type="CanvasLayer" parent="." groups=["ui"]]
@@ -182,6 +182,7 @@ wait_time = 2.0
 transform = Transform3D(0.061028715, 0, 0, 0, 0.056818556, 0, 0, 0, -0.054637637, 38.342514, -2.0869713, 8.449606)
 
 [node name="LapCheckPoints" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.53022)
 script = ExtResource("8_b121j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LapCheckPoints"]

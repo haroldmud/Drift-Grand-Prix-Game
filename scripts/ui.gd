@@ -17,8 +17,8 @@ func _process(delta: float) -> void:
 	if Global.is_game_won == false and $YouWin.text != "YOU WON!!!!!!!!":
 		$YouWin.text = ""
 	elif Global.is_game_won:
-		$YouWin.text = "YOU WON!!!!!!!!"
 		$MarginContainer5/GameOver.text = ""
+		$YouWin.text = "YOU WON!!!!!!!!"
 		$WinTimer.start()
 		Global.is_game_won = false
 	# Countdown while paused
