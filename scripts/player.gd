@@ -51,7 +51,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
 	# --- APPLY FRICTION (slows down when not accelerating)
 	if forward_backward_input == 0.0:
-		var friction_force = -state.linear_velocity * friction
+		var friction_force = -state.linear_velocity * friction # friction to make sure it runs a bit longer after releasing the forward key
 		apply_central_force(friction_force)
 
 	# --- Clamp AFTER forces
