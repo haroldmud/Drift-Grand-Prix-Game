@@ -27,3 +27,6 @@ shape = SubResource("ConvexPolygonShape3D_hqtel")
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(0.043117613, 0.13479903, -0.9899344, -0.0058657564, 0.990873, 0.13467135, 0.9990528, 6.822694e-09, 0.04351477, -2.933506, 1.2732754, 0.008904329)
+
+[node name="SmokeTurning" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5239295, 0.11587939, -6.6613076e-08)
