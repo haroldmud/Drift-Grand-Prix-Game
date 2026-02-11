@@ -1,4 +1,4 @@
 extends Node3D
 
 func _ready() -> void:
-	pass
+	Global.is_game_won = false

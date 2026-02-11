@@ -14,6 +14,12 @@ func _ready() -> void:
 	get_tree().paused = true
 
 func _process(delta: float) -> void:
+	if Global.is_game_won == false and $YouWin.text != "YOU WON!!!!!!!!":
+		$YouWin.text = ""
+	elif Global.is_game_won:
+		$YouWin.text = "YOU WON!!!!!!!!"
+		$WinTimer.start()
+		Global.is_game_won = false
 	# Countdown while paused
 	if not started and timeStarter > 0:
 		countdown_time += delta
@@ -59,3 +65,8 @@ func set_health(health_amount):
 		var text_rect = TextureRect.new()
 		text_rect.texture = load("res://assets/icons/lighting.png")
 		$MarginContainer3/HBoxContainer.add_child(text_rect)
+
+
+func _on_win_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/you_win.tscn")
+	$YouWin.text = ""

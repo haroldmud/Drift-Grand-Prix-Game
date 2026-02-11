@@ -4,3 +4,5 @@
 
 [node name="FinishLine" type="MeshInstance3D"]
 mesh = ExtResource("1_ojfi3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

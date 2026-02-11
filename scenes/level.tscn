@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwu7jcihnkrmt"]
+[gd_scene load_steps=15 format=3 uid="uid://dwu7jcihnkrmt"]
 
 [ext_resource type="PackedScene" uid="uid://vw8h1q4uaabo" path="res://player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://csdctd4q7ytjm" path="res://scripts/level.gd" id="1_klq6b"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://br3vnrm4cqyno" path="res://assets/fonts/subatomic.tsoonami.ttf" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://81gtwyswhbos" path="res://scenes/finish_line.tscn" id="6_2r41h"]
 [ext_resource type="FontFile" uid="uid://f6wys1w34ej1" path="res://assets/fonts/DepartureMono-Regular.otf" id="6_klq6b"]
+[ext_resource type="Script" uid="uid://chlx1i78nhf5a" path="res://scripts/lap_check_points.gd" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
 sky_top_color = Color(0.70697314, 0.75986606, 0.83071184, 1)
@@ -28,6 +29,9 @@ size = Vector2(70, 120)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w7c3h"]
 points = PackedVector3Array(-35.95238, -0.952381, -60.952385, 36.42857, 0.952381, 60.952385, 36.42857, -0.952381, 60.952385, 36.42857, 0.952381, -60.952385, -35.95238, 0.952381, 60.952385, -35.95238, -0.952381, 60.952385, 36.42857, -0.952381, -60.952385, -35.95238, 0.952381, -60.952385)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8c41q"]
+size = Vector3(23.004822, 3.0284424, 1)
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_klq6b")
 
@@ -42,7 +46,7 @@ shadow_enabled = true
 transform = Transform3D(-8.138005e-07, 0, 18.617586, 0, 18.617586, 0, -18.617586, 0, -8.138005e-07, 42.508827, -1.3893623, -144.30545)
 
 [node name="Plane" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.6985899, 0, 0, 0, 1, -4.0798635, -0.08445358, -39.593674)
+transform = Transform3D(0.99977845, 0, -0.021047115, 0, 0.69858986, 0, 0.021047115, 0, 0.99977845, -4.0798635, -0.08445358, -39.593674)
 mesh = SubResource("PlaneMesh_5xgho")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
@@ -155,9 +159,38 @@ theme_override_font_sizes/font_size = 80
 [node name="GameOverTimer" type="Timer" parent="ui"]
 wait_time = 2.0
 
+[node name="YouWin" type="Label" parent="ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -11.5
+offset_right = 55.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.09411765, 1, 0.45882353, 1)
+theme_override_fonts/font = ExtResource("3_w8frs")
+theme_override_font_sizes/font_size = 56
+
+[node name="WinTimer" type="Timer" parent="ui"]
+wait_time = 2.0
+
 [node name="FinishLine" parent="." instance=ExtResource("6_2r41h")]
 transform = Transform3D(0.061028715, 0, 0, 0, 0.056818556, 0, 0, 0, -0.054637637, 38.342514, -2.0869713, 8.449606)
+
+[node name="LapCheckPoints" type="Area3D" parent="."]
+script = ExtResource("8_b121j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LapCheckPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8103695, 1.0142212, 0)
+shape = SubResource("BoxShape3D_8c41q")
 
 [connection signal="timeout" from="ui/StartTimer" to="ui" method="_on_start_timer_timeout"]
 [connection signal="timeout" from="ui/GoTimer" to="ui" method="_on_go_timer_timeout"]
 [connection signal="timeout" from="ui/GameOverTimer" to="ui" method="_on_game_over_timer_timeout"]
+[connection signal="timeout" from="ui/WinTimer" to="ui" method="_on_win_timer_timeout"]
+[connection signal="body_entered" from="LapCheckPoints" to="LapCheckPoints" method="_on_body_entered"]
+[connection signal="body_exited" from="LapCheckPoints" to="LapCheckPoints" method="_on_body_exited"]
