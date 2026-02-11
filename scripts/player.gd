@@ -3,15 +3,19 @@ extends RigidBody3D
 @export var engine_force := 40.0
 @export var steering_speed := 1.5
 @export var max_speed := 50.0
-@export var friction := 0.01  # ← ADD THIS (higher = slower deceleration, takes longer to stop)
+@export var friction := 0.01  # (higher = slower deceleration, takes longer to stop)
+@export var smoke_turn_threshold := 0.3 # (minimum steering to show smoke)
+
 @onready var plane :MeshInstance3D = $"../Plane"
 @onready var car_mesh :MeshInstance3D = $PlayerMesh
+@onready var smoke_turning: GPUParticles3D = $SmokeTurning
 var max_tilt := deg_to_rad(5)
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	await get_tree().physics_frame
 	global_position.y = plane.global_position.y + 0.2
+	smoke_turning.emitting = false  # Start with no smoke
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var plane_mesh := plane.mesh as PlaneMesh
@@ -53,6 +57,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if forward_backward_input == 0.0:
 		var friction_force = -state.linear_velocity * friction # friction to make sure it runs a bit longer after releasing the forward key
 		apply_central_force(friction_force)
+		
+	if abs(steer_input) > smoke_turn_threshold and current_speed > 5.0:
+		smoke_turning.emitting = true
+	else:
+		smoke_turning.emitting = false
 
 	# --- Clamp AFTER forces
 	var pos: Vector3 = state.transform.origin

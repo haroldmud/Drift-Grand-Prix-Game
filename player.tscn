@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://vw8h1q4uaabo"]
+[gd_scene load_steps=5 format=3 uid="uid://vw8h1q4uaabo"]
 
 [ext_resource type="Script" uid="uid://bny32gx1o8oay" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="ArrayMesh" uid="uid://dsfoqorvn4y13" path="res://assets/F1.obj" id="2_i3pqv"]
@@ -6,6 +6,19 @@
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hqtel"]
 margin = 0.0
 points = PackedVector3Array(-3.2225854, 0.2575061, -1.2436308, -3.213337, 0.7094957, -1.2395838, -3.2795506, 0.5242829, 1.3578753, -2.8032503, 1.2864642, 0.6908198, 2.2456527, 0.61947393, -1.024354, 1.5859472, 0.010982874, 0.89316446, -2.6122527, -0.047385752, -1.3103468, -2.6122527, -0.047385752, 1.2625444, -3.2795506, 1.2864642, -0.6430301, 2.3631735, 0.17119662, -0.9626, 1.7693522, 0.7145344, 1.0718825, -1.4692513, 1.191012, -0.3572984, -2.6122527, 0.9051777, -1.3103468, -3.08915, 0.9051777, 1.3578753, 1.5859472, 0.010982874, -0.9326237, 2.4285378, 0.1603, 0.9422067, -3.1147056, 0.07971789, 1.1933992, 2.6270509, 0.5242829, 0.21416499, -2.8032503, 1.2864642, -0.73836106, 1.7693522, 0.7145344, -1.024354, -1.4692513, 1.191012, 0.30949596, -3.1008992, 0.082390696, -1.2296437, 2.5350344, 0.17242849, -0.15492596, 2.531552, 0.33363962, 0.9765515, -3.2713783, 0.25140712, 1.2204211, -2.8032503, 0.9051777, 1.3578753, 2.6270509, 0.5242829, -0.16663648, 2.2456527, 0.61947393, 0.9765515, -3.0479012, 1.2341523, 0.6384977, 2.3411515, 0.61947393, -0.07130553, -2.8890357, 0.0009190078, -1.2137184, -3.08915, 0.5242829, 1.3578753)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_onrkg"]
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+initial_velocity_min = 0.5
+initial_velocity_max = 10.0
+angular_velocity_min = 0.9999839
+angular_velocity_max = 1.9999839
+damping_min = 0.5
+damping_max = 2.0
+scale_min = 0.5
+scale_max = 1.5
+color = Color(1, 0.3024881, 0.6079611, 1)
 
 [node name="Player" type="RigidBody3D"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
@@ -30,3 +43,8 @@ transform = Transform3D(0.043117613, 0.13479903, -0.9899344, -0.0058657564, 0.99
 
 [node name="SmokeTurning" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5239295, 0.11587939, -6.6613076e-08)
+visibility_range_fade_mode = 1
+amount = 50
+lifetime = 1.5
+explosiveness = 0.3
+process_material = SubResource("ParticleProcessMaterial_onrkg")
