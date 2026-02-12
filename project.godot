@@ -23,6 +23,10 @@ Global="*res://Global/global.gd"
 
 window/size/viewport_width=1000
 window/size/viewport_height=600
+window/stretch/aspect="keep_aspect"
+window/dpi_aware=true
+window/allow_hidpi=false
+
 
 [input]
 
