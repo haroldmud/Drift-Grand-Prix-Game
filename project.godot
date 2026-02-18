@@ -27,7 +27,6 @@ window/stretch/aspect="keep_aspect"
 window/dpi_aware=true
 window/allow_hidpi=false
 
-
 [input]
 
 move_forward={

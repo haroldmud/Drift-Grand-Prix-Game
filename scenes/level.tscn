@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwu7jcihnkrmt"]
+[gd_scene load_steps=16 format=3 uid="uid://dwu7jcihnkrmt"]
 
 [ext_resource type="PackedScene" uid="uid://vw8h1q4uaabo" path="res://player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://csdctd4q7ytjm" path="res://scripts/level.gd" id="1_klq6b"]
 [ext_resource type="PackedScene" uid="uid://b0x7jqg8ikenr" path="res://scenes/RaceTrack.tscn" id="2_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://duf73go1k78qo" path="res://assets/Mineways2Skfb-RGBA.png" id="3_b121j"]
 [ext_resource type="Script" uid="uid://tjkn4dg0irg0" path="res://scripts/ui.gd" id="3_mx8sn"]
 [ext_resource type="FontFile" uid="uid://br3vnrm4cqyno" path="res://assets/fonts/subatomic.tsoonami.ttf" id="3_w8frs"]
-[ext_resource type="PackedScene" uid="uid://81gtwyswhbos" path="res://scenes/finish_line.tscn" id="6_2r41h"]
 [ext_resource type="FontFile" uid="uid://f6wys1w34ej1" path="res://assets/fonts/DepartureMono-Regular.otf" id="6_klq6b"]
 [ext_resource type="Script" uid="uid://chlx1i78nhf5a" path="res://scripts/lap_check_points.gd" id="8_b121j"]
 
@@ -22,6 +22,9 @@ background_mode = 2
 sky = SubResource("Sky_2q6dc")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c41q"]
+albedo_texture = ExtResource("3_b121j")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5xgho"]
 size = Vector2(70, 120)
@@ -46,7 +49,8 @@ shadow_enabled = true
 transform = Transform3D(-8.138005e-07, 0, 18.617586, 0, 18.617586, 0, -18.617586, 0, -8.138005e-07, 42.508827, -1.3893623, -144.30545)
 
 [node name="Plane" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.99977845, 0, -0.021047115, 0, 0.69858986, 0, 0.021047115, 0, 0.99977845, -4.0798635, -0.08445358, -39.593674)
+transform = Transform3D(0.99977845, 0, -0.021047115, 0, 0.69858986, 0, 0.021047115, 0, 0.99977845, -4.15938, -0.22860336, -39.735138)
+material_override = SubResource("StandardMaterial3D_8c41q")
 mesh = SubResource("PlaneMesh_5xgho")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
@@ -55,7 +59,7 @@ mesh = SubResource("PlaneMesh_5xgho")
 shape = SubResource("ConvexPolygonShape3D_w7c3h")
 
 [node name="Player" parent="." instance=ExtResource("1_2q6dc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.8422027, -0.10406518, 0.94895005)
+transform = Transform3D(-4.371139e-08, 0, 1.3118134, 0, 1.3648049, 0, -1, 0, -5.7341182e-08, -27.905342, -0.21654391, -37.09858)
 linear_damp = 1.0
 
 [node name="ui" type="CanvasLayer" parent="." groups=["ui"]]
@@ -178,15 +182,12 @@ theme_override_font_sizes/font_size = 56
 [node name="WinTimer" type="Timer" parent="ui"]
 wait_time = 2.0
 
-[node name="FinishLine" parent="." instance=ExtResource("6_2r41h")]
-transform = Transform3D(0.061028715, 0, 0, 0, 0.056818556, 0, 0, 0, -0.054637637, 38.342514, -2.0869713, 8.449606)
-
 [node name="LapCheckPoints" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.53022)
 script = ExtResource("8_b121j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LapCheckPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8103695, 1.0142212, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.941301, 1.0142212, -39.19738)
 shape = SubResource("BoxShape3D_8c41q")
 
 [connection signal="timeout" from="ui/StartTimer" to="ui" method="_on_start_timer_timeout"]
