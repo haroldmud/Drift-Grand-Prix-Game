@@ -3,7 +3,12 @@ extends RigidBody3D
 @export var engine_force := 40.0
 @export var steering_speed := 1.5
 @export var max_speed := 50.0
-@export var friction := 0.01  # ← ADD THIS (higher = slower deceleration, takes longer to stop)
+
+@export var min_volume_db := -20.0  #  Idle volume (quieter)
+@export var max_volume_db := 0.0
+@export var volume_transition_speed := 5.0  # ← How fast volume changes
+
+@export var friction := 0.01  # (higher = slower deceleration, takes longer to stop)
 @export var max_steer_angle := 20.0
 @onready var plane :MeshInstance3D = $"../Plane"
 @onready var car_mesh :MeshInstance3D = $PlayerMesh
@@ -11,8 +16,10 @@ extends RigidBody3D
 @onready var cam2: Camera3D = $TwistPivot/PitchPivot/Camera2
 @onready var front_tire_left_pivot = $PlayerMesh/FrontTireLeftPivot
 @onready var front_tire_right_pivot = $PlayerMesh/FrontTireRightPivot
+@onready var engine_audio := $EngineAudio
 
 var steer_angle := 0.0
+var current_volume := -20.0
 #@onready var tire := $TireMesh1
 #var tire_speed := 10.0
 
@@ -21,6 +28,10 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	await get_tree().physics_frame
 	global_position.y = plane.global_position.y + 0.2
+	engine_audio.stream.loop = true
+	engine_audio.volume_db = min_volume_db
+	current_volume = min_volume_db
+	engine_audio.play()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_camera"):
@@ -76,6 +87,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 # --- Engine force with max speed check
 	if abs(speed_along_forward) < max_speed:
 		apply_central_force(forward_dir * forward_backward_input * engine_force)
+
+
+	var target_volume := min_volume_db
+	if Input.is_action_pressed("move_forward"):
+		target_volume = max_volume_db
+	
+	current_volume = lerp(current_volume, target_volume, state.step * volume_transition_speed)
+	engine_audio.volume_db = current_volume
 
 # --- Drag/friction so it coasts and slows down progressively
 # Higher friction = faster deceleration (stops sooner)

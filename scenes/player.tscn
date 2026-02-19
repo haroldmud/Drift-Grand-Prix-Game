@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://vw8h1q4uaabo"]
+[gd_scene load_steps=9 format=3 uid="uid://vw8h1q4uaabo"]
 
 [ext_resource type="Script" uid="uid://bny32gx1o8oay" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dnofrcqq16v6k" path="res://assets/low_poly_f1_car.glb" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://bd0m326bvremx" path="res://scenes/tire_mesh_1.tscn" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://dq0muqa3blodx" path="res://scenes/front_tire_left_pivot.tscn" id="4_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://cnqe8bln5ocl" path="res://scenes/front_tire_rightt_pivot.tscn" id="5_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://didreceekmmsw" path="res://assets/audio/car_engine.mp3" id="6_tuyoq"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hqtel"]
 margin = 0.0
@@ -70,3 +71,6 @@ amount = 50
 lifetime = 1.5
 explosiveness = 0.3
 process_material = SubResource("ParticleProcessMaterial_onrkg")
+
+[node name="EngineAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_tuyoq")
