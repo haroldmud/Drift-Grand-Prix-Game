@@ -14,4 +14,4 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	
 	if body is RigidBody3D:
 		body.linear_velocity = Vector3.ZERO
-		body.global_position = body.global_position - body.transform.basis.x * 2
+		body.global_position = body.global_position - body.transform.basis.x * 5

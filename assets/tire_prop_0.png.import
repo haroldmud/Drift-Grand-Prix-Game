@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ducptaturpeag"
-path.s3tc="res://.godot/imported/red_bull_racing_2.png-29607d06f095ff3c2d68c61fae3a0723.s3tc.ctex"
+uid="uid://gdd7jdm5t0kq"
+path.s3tc="res://.godot/imported/tire_prop_0.png-0f4892ee10a615a121db6331098e6202.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f642d48b062360eb630fba63c0ae4fe8"
+"md5": "16df8552eb18ee1720788c11a6aabf75"
 }
 
 [deps]
 
-source_file="res://red_bull_racing_2.png"
-dest_files=["res://.godot/imported/red_bull_racing_2.png-29607d06f095ff3c2d68c61fae3a0723.s3tc.ctex"]
+source_file="res://assets/tire_prop_0.png"
+dest_files=["res://.godot/imported/tire_prop_0.png-0f4892ee10a615a121db6331098e6202.s3tc.ctex"]
 
 [params]
 

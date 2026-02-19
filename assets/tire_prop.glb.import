@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://0liaesdvgyrs"
-path="res://.godot/imported/red_bull_racing.glb-aefc42b24c11a3f209117e4e9c1cce50.scn"
+uid="uid://1105ubuxasid"
+path="res://.godot/imported/tire_prop.glb-1242e173ad4b9c2cfacd284cd9393e88.scn"
 
 [deps]
 
-source_file="res://red_bull_racing.glb"
-dest_files=["res://.godot/imported/red_bull_racing.glb-aefc42b24c11a3f209117e4e9c1cce50.scn"]
+source_file="res://assets/tire_prop.glb"
+dest_files=["res://.godot/imported/tire_prop.glb-1242e173ad4b9c2cfacd284cd9393e88.scn"]
 
 [params]
 

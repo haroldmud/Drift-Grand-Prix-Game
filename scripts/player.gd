@@ -4,19 +4,40 @@ extends RigidBody3D
 @export var steering_speed := 1.5
 @export var max_speed := 50.0
 @export var friction := 0.01  # ← ADD THIS (higher = slower deceleration, takes longer to stop)
+@export var max_steer_angle := 20.0
 @onready var plane :MeshInstance3D = $"../Plane"
 @onready var car_mesh :MeshInstance3D = $PlayerMesh
+@onready var cam1: Camera3D = $TwistPivot/PitchPivot/Camera1
+@onready var cam2: Camera3D = $TwistPivot/PitchPivot/Camera2
+@onready var front_tire_left_pivot = $PlayerMesh/FrontTireLeftPivot
+@onready var front_tire_right_pivot = $PlayerMesh/FrontTireRightPivot
+
+var steer_angle := 0.0
+#@onready var tire := $TireMesh1
+#var tire_speed := 10.0
 
 func _ready() -> void:
+	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	await get_tree().physics_frame
 	global_position.y = plane.global_position.y + 0.2
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_camera"):
+		if cam1.is_current():
+			cam2.make_current()
+		else :
+			cam1.make_current()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if Global.is_game_won:
 		state.linear_velocity = Vector3.ZERO
 		state.angular_velocity = Vector3.ZERO
 		return
+		
+	#front_tire_right_pivot.rotation.y = -steer_angle * 0.2
+	#front_tire_left_pivot.rotation.y = -steer_angle * 0.2
+	#print(steer_angle)
 
 	var plane_mesh := plane.mesh as PlaneMesh
 	if plane_mesh == null:
@@ -26,6 +47,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var forward_backward_input := Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
 	var steer_input := Input.get_action_strength("steer_right") - Input.get_action_strength("steer_left")
 
+			# --- TIRE STEERING ---
+	var target_steer := steer_input * deg_to_rad(max_steer_angle)
+	steer_angle = lerp(steer_angle, target_steer, state.step * 10.0)
 # Smooth tilt for nicer effect
 	var max_tilt := deg_to_rad(2)
 	var tilt_angle := -steer_input * max_tilt

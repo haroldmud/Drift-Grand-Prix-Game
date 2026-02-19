@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq0muqa3blodx"]
+
+[ext_resource type="PackedScene" uid="uid://bd0m326bvremx" path="res://scenes/tire_mesh_1.tscn" id="1_qemsf"]
+
+[node name="FrontTireLeftPivot" type="Node3D"]
+
+[node name="TireMesh1" parent="." instance=ExtResource("1_qemsf")]
+transform = Transform3D(-1.9765787e-07, 0, 2.4113662, 0, 2.1105814, 0, -4.1668353, 0, -9.7128016e-08, -0.00023591518, 0.000488773, -0.00037270784)
+skeleton = NodePath("../../..")

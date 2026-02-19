@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://dwu7jcihnkrmt"]
 
-[ext_resource type="PackedScene" uid="uid://vw8h1q4uaabo" path="res://player.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://vw8h1q4uaabo" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://csdctd4q7ytjm" path="res://scripts/level.gd" id="1_klq6b"]
 [ext_resource type="PackedScene" uid="uid://b0x7jqg8ikenr" path="res://scenes/RaceTrack.tscn" id="2_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://duf73go1k78qo" path="res://assets/Mineways2Skfb-RGBA.png" id="3_b121j"]

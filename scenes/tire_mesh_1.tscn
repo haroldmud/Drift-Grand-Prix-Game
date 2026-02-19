@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd0m326bvremx"]
+
+[ext_resource type="PackedScene" uid="uid://1105ubuxasid" path="res://assets/tire_prop.glb" id="1_qmqhe"]
+[ext_resource type="Script" uid="uid://vrxpx3w52yas" path="res://tire_mesh_1.gd" id="1_s2y6u"]
+
+[node name="TireMesh1" type="MeshInstance3D"]
+script = ExtResource("1_s2y6u")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_qmqhe")]
+transform = Transform3D(-0.16499974, 0, -0.000302394, 0, 0.165, 0, 0.000302394, 0, -0.16499974, 0, -0.1629177, 0)
