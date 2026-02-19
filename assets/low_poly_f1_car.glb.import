@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ccknhhpa5an5y"
-path="res://.godot/imported/low_poly-f1.glb-900c99ebd2d98fc044146c3a4b2e1db7.scn"
+uid="uid://dnofrcqq16v6k"
+path="res://.godot/imported/low_poly_f1_car.glb-d3b76f6bf9f5860f1a83142df0ab44ab.scn"
 
 [deps]
 
-source_file="res://assets/low_poly-f1.glb"
-dest_files=["res://.godot/imported/low_poly-f1.glb-900c99ebd2d98fc044146c3a4b2e1db7.scn"]
+source_file="res://assets/low_poly_f1_car.glb"
+dest_files=["res://.godot/imported/low_poly_f1_car.glb-d3b76f6bf9f5860f1a83142df0ab44ab.scn"]
 
 [params]
 

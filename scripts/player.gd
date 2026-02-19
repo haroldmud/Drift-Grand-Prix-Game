@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @export var engine_force := 40.0
 @export var steering_speed := 1.5
-@export var max_speed := 20.0
+@export var max_speed := 50.0
 @export var friction := 0.01  # ← ADD THIS (higher = slower deceleration, takes longer to stop)
 @onready var plane :MeshInstance3D = $"../Plane"
 @onready var car_mesh :MeshInstance3D = $PlayerMesh

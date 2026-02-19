@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vw8h1q4uaabo"]
 
 [ext_resource type="Script" uid="uid://bny32gx1o8oay" path="res://scripts/player.gd" id="1_onrkg"]
-[ext_resource type="ArrayMesh" uid="uid://dsfoqorvn4y13" path="res://assets/F1.obj" id="2_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://dnofrcqq16v6k" path="res://assets/low_poly_f1_car.glb" id="2_onrkg"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hqtel"]
 margin = 0.0
@@ -28,7 +28,9 @@ script = ExtResource("1_onrkg")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.43543786, 0, 0, 0, 0.49749324, 0, 0, 0, 0.47254097, 0, 0, 0)
-mesh = ExtResource("2_i3pqv")
+
+[node name="Sketchfab_Scene" parent="PlayerMesh" instance=ExtResource("2_onrkg")]
+transform = Transform3D(-1.9132583e-06, 0, -0.029206542, 0, 0.021484159, 0, 0.027417991, 0, -2.038066e-06, -0.8299963, 0, -3.3431622e-08)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0, 0, 0)
@@ -39,7 +41,7 @@ shape = SubResource("ConvexPolygonShape3D_hqtel")
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
-transform = Transform3D(0.043117613, 0.13479903, -0.9899344, -0.0058657564, 0.990873, 0.13467135, 0.9990528, 6.822694e-09, 0.04351477, -2.933506, 1.2732754, 0.008904329)
+transform = Transform3D(0.042983662, -0.15576215, -0.98685896, 0.0067779613, 0.98779464, -0.1556146, 0.99905276, -6.0156835e-09, 0.04351478, -0.08197379, 0.40917444, 0.008904453)
 
 [node name="SmokeTurning" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5239295, 0.11587939, -6.6613076e-08)
