@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bd0m326bvremx" path="res://scenes/tire_mesh_1.tscn" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://dq0muqa3blodx" path="res://scenes/front_tire_left_pivot.tscn" id="4_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://cnqe8bln5ocl" path="res://scenes/front_tire_rightt_pivot.tscn" id="5_tuyoq"]
-[ext_resource type="AudioStream" uid="uid://didreceekmmsw" path="res://assets/audio/car_engine.mp3" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://byedi86s30gju" path="res://assets/audio/car_engine (mp3cut.net).mp3" id="6_tuyoq"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hqtel"]
 margin = 0.0

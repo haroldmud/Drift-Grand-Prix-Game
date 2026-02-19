@@ -51,6 +51,8 @@ func _process(delta: float) -> void:
 		$MarginContainer5/GameOver.text = ""
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif Global.is_game_won == true:
+		$MarginContainer5/GameOver.text = ""
 
 func update_label() -> void:
 	var minutes := int(time) / 60

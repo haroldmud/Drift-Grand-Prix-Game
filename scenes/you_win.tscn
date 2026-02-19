@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://duvmbmmpugb"]
+[gd_scene load_steps=6 format=3 uid="uid://duvmbmmpugb"]
 
 [ext_resource type="Script" uid="uid://bg4uwre0p54ua" path="res://scripts/game_over.gd" id="1_4bphb"]
 [ext_resource type="FontFile" uid="uid://f6wys1w34ej1" path="res://assets/fonts/DepartureMono-Regular.otf" id="2_qxwg1"]
 [ext_resource type="FontFile" uid="uid://br3vnrm4cqyno" path="res://assets/fonts/subatomic.tsoonami.ttf" id="3_nw31f"]
+[ext_resource type="AudioStream" uid="uid://c03qt35cgve3y" path="res://assets/audio/Damtaro - Start (freetouse.com).mp3" id="4_qxwg1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_wqhvx"]
 
@@ -58,3 +59,6 @@ theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("3_nw31f")
 theme_override_font_sizes/font_size = 36
 text = "space to restart"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qxwg1")

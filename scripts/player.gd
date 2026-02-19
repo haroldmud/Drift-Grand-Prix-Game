@@ -5,7 +5,7 @@ extends RigidBody3D
 @export var max_speed := 50.0
 
 @export var min_volume_db := -20.0  #  Idle volume (quieter)
-@export var max_volume_db := 0.0
+@export var max_volume_db := -10.0
 @export var volume_transition_speed := 5.0  # ← How fast volume changes
 
 @export var friction := 0.01  # (higher = slower deceleration, takes longer to stop)

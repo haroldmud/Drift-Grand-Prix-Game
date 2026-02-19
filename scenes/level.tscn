@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwu7jcihnkrmt"]
+[gd_scene load_steps=17 format=3 uid="uid://dwu7jcihnkrmt"]
 
 [ext_resource type="PackedScene" uid="uid://vw8h1q4uaabo" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://csdctd4q7ytjm" path="res://scripts/level.gd" id="1_klq6b"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://br3vnrm4cqyno" path="res://assets/fonts/subatomic.tsoonami.ttf" id="3_w8frs"]
 [ext_resource type="FontFile" uid="uid://f6wys1w34ej1" path="res://assets/fonts/DepartureMono-Regular.otf" id="6_klq6b"]
 [ext_resource type="Script" uid="uid://chlx1i78nhf5a" path="res://scripts/lap_check_points.gd" id="8_b121j"]
+[ext_resource type="AudioStream" uid="uid://by6quixgox7ue" path="res://assets/audio/Pufino - Rock Me Now (freetouse.com).mp3" id="9_8c41q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
 sky_top_color = Color(0.70697314, 0.75986606, 0.83071184, 1)
@@ -189,6 +190,9 @@ script = ExtResource("8_b121j")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LapCheckPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.941301, 1.0142212, -39.19738)
 shape = SubResource("BoxShape3D_8c41q")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_8c41q")
 
 [connection signal="timeout" from="ui/StartTimer" to="ui" method="_on_start_timer_timeout"]
 [connection signal="timeout" from="ui/GoTimer" to="ui" method="_on_go_timer_timeout"]
