@@ -1,11 +1,11 @@
 extends RigidBody3D
 
 @export var engine_force := 40.0
-@export var steering_speed := 1.5
+@export var steering_speed := 1.0
 @export var max_speed := 50.0
 
 @export var min_volume_db := -20.0  #  Idle volume (quieter)
-@export var max_volume_db := -10.0
+@export var max_volume_db := 0.0
 @export var volume_transition_speed := 5.0  # ← How fast volume changes
 
 @export var friction := 0.01  # (higher = slower deceleration, takes longer to stop)
@@ -45,7 +45,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		state.linear_velocity = Vector3.ZERO
 		state.angular_velocity = Vector3.ZERO
 		return
-		
+	steering_speed = (state.linear_velocity.length()/10) + 0.1
 	#front_tire_right_pivot.rotation.y = -steer_angle * 0.2
 	#front_tire_left_pivot.rotation.y = -steer_angle * 0.2
 	#print(steer_angle)
