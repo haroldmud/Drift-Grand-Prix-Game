@@ -4,6 +4,7 @@ extends Node3D
 
 func _ready() -> void:
 	Global.is_game_won = false
+	$BipBip.play()
 	if bg_music :
 		bg_music.stream.loop = true
 		bg_music.volume_db = -30

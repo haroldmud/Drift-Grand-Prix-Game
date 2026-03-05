@@ -5,10 +5,8 @@ var local_center: Vector3
 var player: RigidBody3D
 
 func _ready() -> void:
-	# Wait for scene to load
 	await get_tree().process_frame
 	
-	# Get player from group
 	player = get_tree().get_first_node_in_group("player")
 	
 	if not player:

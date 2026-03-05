@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwu7jcihnkrmt"]
+[gd_scene load_steps=19 format=3 uid="uid://dwu7jcihnkrmt"]
 
 [ext_resource type="PackedScene" uid="uid://vw8h1q4uaabo" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://csdctd4q7ytjm" path="res://scripts/level.gd" id="1_klq6b"]
@@ -9,6 +9,8 @@
 [ext_resource type="FontFile" uid="uid://f6wys1w34ej1" path="res://assets/fonts/DepartureMono-Regular.otf" id="6_klq6b"]
 [ext_resource type="Script" uid="uid://chlx1i78nhf5a" path="res://scripts/lap_check_points.gd" id="8_b121j"]
 [ext_resource type="AudioStream" uid="uid://by6quixgox7ue" path="res://assets/audio/Pufino - Rock Me Now (freetouse.com).mp3" id="9_8c41q"]
+[ext_resource type="Script" uid="uid://dfkwxt2uylc8s" path="res://scenes/lap_counter.gd" id="9_t1rx8"]
+[ext_resource type="AudioStream" uid="uid://bimx3kov2xjct" path="res://assets/audio/bipbip.mp3" id="10_olg7q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rd3vj"]
 sky_top_color = Color(0.70697314, 0.75986606, 0.83071184, 1)
@@ -34,7 +36,7 @@ size = Vector2(70, 120)
 points = PackedVector3Array(-35.95238, -0.952381, -60.952385, 36.42857, 0.952381, 60.952385, 36.42857, -0.952381, 60.952385, 36.42857, 0.952381, -60.952385, -35.95238, 0.952381, 60.952385, -35.95238, -0.952381, 60.952385, 36.42857, -0.952381, -60.952385, -35.95238, 0.952381, -60.952385)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8c41q"]
-size = Vector3(23.004822, 3.0284424, 1)
+size = Vector3(23.004822, 3.0230103, 1)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_klq6b")
@@ -181,18 +183,28 @@ theme_override_fonts/font = ExtResource("3_w8frs")
 theme_override_font_sizes/font_size = 56
 
 [node name="WinTimer" type="Timer" parent="ui"]
-wait_time = 2.0
 
 [node name="LapCheckPoints" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.53022)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.821533)
 script = ExtResource("8_b121j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LapCheckPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.941301, 1.0142212, -39.19738)
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -27.941294, 1.0142212, -0.45539856)
+shape = SubResource("BoxShape3D_8c41q")
+
+[node name="LapCounter" type="Area3D" parent="."]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 0.33962822, 0, -33.90719)
+script = ExtResource("9_t1rx8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LapCounter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9614067, -0.44251406, -2.3863602)
 shape = SubResource("BoxShape3D_8c41q")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_8c41q")
+
+[node name="BipBip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_olg7q")
 
 [connection signal="timeout" from="ui/StartTimer" to="ui" method="_on_start_timer_timeout"]
 [connection signal="timeout" from="ui/GoTimer" to="ui" method="_on_go_timer_timeout"]
@@ -200,3 +212,5 @@ stream = ExtResource("9_8c41q")
 [connection signal="timeout" from="ui/WinTimer" to="ui" method="_on_win_timer_timeout"]
 [connection signal="body_entered" from="LapCheckPoints" to="LapCheckPoints" method="_on_body_entered"]
 [connection signal="body_exited" from="LapCheckPoints" to="LapCheckPoints" method="_on_body_exited"]
+[connection signal="body_entered" from="LapCounter" to="LapCounter" method="_on_body_entered"]
+[connection signal="body_exited" from="LapCounter" to="LapCounter" method="_on_body_exited"]

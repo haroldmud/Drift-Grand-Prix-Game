@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://va8ebobdnfrl" path="res://assets/Mineways2Skfb.obj" id="1_u80oa"]
 [ext_resource type="Texture2D" uid="uid://duf73go1k78qo" path="res://assets/Mineways2Skfb-RGBA.png" id="1_ymmm0"]
 [ext_resource type="Script" uid="uid://ctqlmpd7unxk4" path="res://scripts/race_track.gd" id="2_pnwop"]
-[ext_resource type="AudioStream" uid="uid://llkyd5rrxq41" path="res://assets/audio/zapsplat_impacts_crash_bicycle_hit_wall_18089.mp3" id="4_q10yx"]
+[ext_resource type="AudioStream" uid="uid://dl5ogei6pe3n1" path="res://assets/audio/bump.wav" id="4_q10yx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q10yx"]
 albedo_texture = ExtResource("1_ymmm0")
@@ -22,7 +22,8 @@ script = ExtResource("2_pnwop")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("ConcavePolygonShape3D_u80oa")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="BumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_q10yx")
+volume_db = 6.4
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
